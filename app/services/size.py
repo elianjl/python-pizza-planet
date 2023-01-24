@@ -31,7 +31,7 @@ def get_size_by_id(_id: int):
 
 
 @size.route('/', methods=GET)
-def get_sized():
+def get_sizes():
     sizes, error = SizeController.get_all()
     response = sizes if not error else {'error': error}
     status_code = 200 if sizes else 404 if not error else 400
