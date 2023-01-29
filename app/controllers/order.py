@@ -9,6 +9,7 @@ from .base import BaseController
 class OrderController(BaseController):
     manager = OrderManager
     __required_info = ('client_name', 'client_dni', 'client_address', 'client_phone', 'size_id')
+    instance = None
 
     @staticmethod
     def calculate_order_price(size_price: float, ingredients: list, beverages: list):
@@ -16,6 +17,15 @@ class OrderController(BaseController):
         price += sum(beverage.price for beverage in beverages)
         price += size_price
         return round(price, 2)
+
+    def __new__(cls):
+        if cls.isinstance is None:
+            cls.instance = super().__new__(cls)
+        return cls.instance
+
+    def __init__(self):
+        if OrderController.isinstance is None:
+            OrderController.instance = self
 
     @classmethod
     def create(cls, order: dict):
