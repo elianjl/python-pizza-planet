@@ -33,49 +33,65 @@ beverages = {
 
 
 def random_price_ingredient():
-    random_ingredient = random.choice(list(ingredients.keys()))
-    return random_ingredient, ingredients[random_ingredient]
+    return random.choice(list(ingredients.items()))
 
 def random_price_size():
-    random_size = random.choice(list(sizes.keys()))
-    return random_size, sizes[random_size]
+    return random.choice(list(sizes.items()))
 
 def random_price_beverage():
-    random_beverage = random.choice(list(beverages.keys()))
-    return random_beverage, beverages[random_beverage]
+    return random.choice(list(beverages.items()))
 
 
-def create_random_customer():
-    customer = {
+def create_random_client():
+    client = {
         "client_name": fake.name(),
         "client_dni": fake.ssn(),
         "client_address": fake.address(),
         "client_phone": fake.msisdn()
     }
-    return customer
+    return client
 
-customers = []
+clients = []
 for i in range (10):
-    customers.append(create_random_customer())
+    clients.append(create_random_client())
 
 
 def create_random_ingredient():
+    ingredient = random_price_ingredient()
     ingredient = {
-        "name": random_price_ingredient()[0], 
-        "price": random_price_ingredient()[1]
+        "name": ingredient[0],
+        "price": ingredient[1]
     }
     return ingredient
 
 def create_random_size():
+    size = random_price_size()
     size = {
-        "name": random_price_size()[0], 
-        "price": random_price_size()[1]
+        "name": size[0],
+        "price": size[1]
     }
     return size
 
 def create_random_beverage():
+    beverage = random_price_beverage()
     beverage = {
-        "name": random_price_beverage()[0], 
-        "price": random_price_beverage()[1]
+        "name": beverage[0],
+        "price": beverage[1]
     }
     return beverage
+
+
+def fill_database():
+    return None
+
+
+def create_random_order():
+    client = random.choice(clients)
+
+    new_order = {
+        "client_name": client["client_name"],
+        "client_dni": client["client_dni"],
+        "client_address": client["client_address"],
+        "client_phone": client["client_phone"],
+    }
+    return new_order
