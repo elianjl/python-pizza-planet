@@ -36,7 +36,6 @@ def test_create(app, ingredients, beverages, size, client_data):
     created_size, created_ingredients, created_beverages = __create_sizes_and_ingredients(ingredients, beverages, [size])
     order = __order(created_ingredients, created_beverages, created_size, client_data)
 
-    print("ORDER:", order)
     created_order, error = OrderController.create(order)
     size_id = order.pop('size_id', None)
     ingredient_ids = order.pop('ingredients', [])
@@ -44,7 +43,6 @@ def test_create(app, ingredients, beverages, size, client_data):
     pytest.assume(error is None)
     
     for param, value in order.items():
-        print("\n\n\n\n\nCREATED:", created_order)
         pytest.assume(param in created_order)
         pytest.assume(value == created_order[param])
         pytest.assume(created_order['_id'])
