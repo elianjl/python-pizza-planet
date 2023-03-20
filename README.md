@@ -112,3 +112,13 @@ ext install ritwickdey.LiveServer
 ```bash
 python3 manage.py test
 ```
+
+### Run the seeder
+
+- Make sure that you have `flask_seeder` installed
+
+- Run the seeder command
+
+```bash
+python3 manage.py seed run --root app/seeds
+```
