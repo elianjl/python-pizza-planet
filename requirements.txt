@@ -34,4 +34,4 @@ toml==0.10.2
 Werkzeug==2.0.2
 zipp==3.7.0
 Faker==16.6.1
-Flask-Seeder==1.2.0
+Flask-Seeder==1.2.0Faker==16.6.1
