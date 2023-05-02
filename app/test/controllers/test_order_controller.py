@@ -32,7 +32,7 @@ def __create_sizes_and_ingredients(ingredients: list, beverages: list,  sizes: l
     return created_sizes if len(created_sizes) > 1 else created_sizes.pop(), created_ingredients, created_beverages
 
 
-def test_create(app, ingredients, beverages, size, client_data):
+def test_create_new_order_controller(app, ingredients, beverages, size, client_data):
     created_size, created_ingredients, created_beverages = __create_sizes_and_ingredients(ingredients, beverages, [size])
     order = __order(created_ingredients, created_beverages, created_size, client_data)
 
@@ -62,7 +62,7 @@ def test_create(app, ingredients, beverages, size, client_data):
         pytest.assume(not beverages_in_detail.difference(beverage_ids))
 
 
-def test_calculate_order_price(app, ingredients, beverages, size, client_data):
+def test_calculate_order_price_controller(app, ingredients, beverages, size, client_data):
     created_size, created_ingredients, created_beverages = __create_sizes_and_ingredients(ingredients, beverages, [size])
     order = __order(created_ingredients, created_beverages, created_size, client_data)
     created_order, _ = OrderController.create(order)
@@ -70,7 +70,7 @@ def test_calculate_order_price(app, ingredients, beverages, size, client_data):
     pytest.assume(created_order['total_price'] == round(total_price, 2))
 
 
-def test_get_by_id(app, ingredients, beverages, size, client_data):
+def test_get_order_by_id_controller(app, ingredients, beverages, size, client_data):
     created_size, created_ingredients, created_beverages = __create_sizes_and_ingredients(ingredients, beverages, [size])
     order = __order(created_ingredients, created_beverages, created_size, client_data)
     created_order, _ = OrderController.create(order)
@@ -98,7 +98,7 @@ def test_get_by_id(app, ingredients, beverages, size, client_data):
         pytest.assume(not beverages_in_detail.difference(beverage_ids))
 
 
-def test_get_all(app, ingredients, beverages, sizes, client_data):
+def test_get_all_order_controller(app, ingredients, beverages, sizes, client_data):
     created_sizes, created_ingredients, created_beverages = __create_sizes_and_ingredients(ingredients, beverages, sizes)
     created_orders = []
     for _ in range(5):
